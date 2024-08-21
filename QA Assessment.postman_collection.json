@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "89f464f4-c8ab-4f10-85de-f99422416e84",
+		"name": "QA Assessment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33694812"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\r",
+							"\"Status code validation\",function(){\r",
+							"\r",
+							"pm.response.to.have.status(200);\r",
+							"}\r",
+							"\r",
+							")"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/public/v2/users/7351977",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"7351977"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post req",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\r",
+							"\"Status code valitation\",function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"}\r",
+							"\r",
+							")"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1dadeca7b2cffc9a2f053ec93509354240f508770b2ccd3d2e7915c505efb7eb",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Ms. Shan\",\"email\":\"shanmugam8@gmail.com\",\"gender\":\"male\",\"status\":\"inactive\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/public/v2/users/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get req",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validate Multiple field in response\",function(){\r",
+							"\r",
+							"responseJson=pm.response.json();\r",
+							"pm.expect(responseJson.id).to.eql(7356222);\r",
+							"\r",
+							"pm.expect(responseJson.email).to.eql(\"shanmugam80@gmail.com\")\r",
+							"pm.expect(responseJson.gender).to.eql(\"male\")\r",
+							"});\r",
+							"\r",
+							"//status code Validation\r",
+							"pm.test(\"Successful status code\",function(){\r",
+							"    pm.response.to.have.status(200)});\r",
+							"\r",
+							"//Testing header\r",
+							"pm.test(\"Content-Type header present\"),function(){\r",
+							"    pm.expect(pm.response.to.have.header(\"Content-Type\"))\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1dadeca7b2cffc9a2f053ec93509354240f508770b2ccd3d2e7915c505efb7eb",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/public/v2/users/7356222",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"7356222"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1dadeca7b2cffc9a2f053ec93509354240f508770b2ccd3d2e7915c505efb7eb",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/public/v2/users/7356220",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"7356220"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "1dadeca7b2cffc9a2f053ec93509354240f508770b2ccd3d2e7915c505efb7eb",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
